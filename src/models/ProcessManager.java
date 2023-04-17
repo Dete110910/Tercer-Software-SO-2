@@ -32,6 +32,7 @@ public class ProcessManager {
     }
 
     public void initSimulation(){
+        this.copyToCurrentProcess();
         this.cleanAllLists();
         this.initLoadToReady();
         int i = 0;
@@ -235,7 +236,6 @@ public class ProcessManager {
     }
 
     private void cleanAllLists(){
-        this.currentList.clear();
         this.ready.clear();
         this.dispatch.clear();
         this.execution.clear();
@@ -262,9 +262,7 @@ public class ProcessManager {
     }
 
     public void copyToCurrentProcess(){
-        for (int i = 0; i < inQueue.size(); i++) {
-            currentList.add(new Process(inQueue.get(i)));
-        }
+        currentList.addAll(inQueue);
     }
     public void cleanQueueList(){
         inQueue.clear();

@@ -45,7 +45,7 @@ public class ViewManager extends JFrame {
 
         this.inQueue = new Object[0][0];
         this.readyProcess = new Object[0][0];
-
+        this.currentProcess = new Object[0][0];
     }
 
 

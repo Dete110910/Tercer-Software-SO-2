@@ -2,6 +2,7 @@ package controllers;
 
 import models.Process;
 import models.ProcessManager;
+import persistence.PersistenceManager;
 import views.ViewManager;
 import views.Utilities;
 
@@ -121,9 +122,9 @@ public class Controller implements ActionListener, KeyListener {
         if(response == 0){
             processManager.initSimulation();
             Utilities.showDoneCPUProcess();
-            //this.saveReports();
+            this.saveReports();
             processManager.copyToCurrentProcess();
-            processManager.cleanQueueList();
+           //processManager.cleanQueueList();
             this.cleanMainTableProcess();
             this.loadReportList();
         }
@@ -132,9 +133,7 @@ public class Controller implements ActionListener, KeyListener {
     private void cleanMainTableProcess(){
         this.viewManager.setValuesToTable(processManager.getListAsMatrixObject(processManager.getInQueue()), "Procesos Actuales");
     }
-    private void saveReports(){
 
-    }
 
     private void showCreateProcessDialog(){
         this.viewManager.showCreateProcessDialog();
@@ -247,7 +246,7 @@ public class Controller implements ActionListener, KeyListener {
     }
 
     private void changeTableToCurrentReports(){
-        this.viewManager.setValuesToCurrentProcess();
+        this.viewManager.setValuesToCurrentReport();
     }
 
     private void changeTableToReadyReports(){
@@ -347,6 +346,26 @@ public class Controller implements ActionListener, KeyListener {
         viewManager.setSuspendExecutionToSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendExecutionToSuspendReady()));
         viewManager.setSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendReady()));
         viewManager.setFinished(processManager.getListAsMatrixObject(processManager.getFinished()));
+    }
+
+    private void saveReports(){
+        PersistenceManager.saveReport("Actuales.txt", processManager.getInQueue());
+        PersistenceManager.saveReport("Listos.txt", processManager.getReady());
+        PersistenceManager.saveReport("Despachados.txt", processManager.getDispatch());
+        PersistenceManager.saveReport("Ejecución.txt", processManager.getExecution());
+        PersistenceManager.saveReport("Expirados.txt", processManager.getExpiration());
+        PersistenceManager.saveReport("Espera.txt", processManager.getWait());
+        PersistenceManager.saveReport("Bloqueados.txt", processManager.getBlock());
+        PersistenceManager.saveReport("ReporteTerminacionBloqueadoAListo.txt", processManager.getEndIOBlockReady());
+        PersistenceManager.saveReport("ReporteSuspendidoBloqASusp.txt", processManager.getSuspendBlockToSuspendBlock());
+        PersistenceManager.saveReport("ReporteReanudarSuspABloq.txt", processManager.getResumeSuspendBlockToBlock());
+        PersistenceManager.saveReport("ReporteSuspBloq.txt", processManager.getSuspendBlock());
+        PersistenceManager.saveReport("ReporteTermSusBloqASusList.txt", processManager.getEndIOSuspendBlockToSuspendReady());
+        PersistenceManager.saveReport("SuspendidoListo.txt", processManager.getResumeSuspendReadyToReady());
+        PersistenceManager.saveReport("ReporteReanSusLisAList.txt", processManager.getSuspendReadyToSuspendReady());
+        PersistenceManager.saveReport("ReporteSuspListo-susp.Listo.txt", processManager.getSuspendExecutionToSuspendReady());
+        PersistenceManager.saveReport("ReporteSuspEjec-susp.Listo.txt.txt", processManager.getSuspendReady());
+        PersistenceManager.saveReport("ReporteFinalizados.txt", processManager.getFinished());
     }
 
     @Override
