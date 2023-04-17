@@ -173,6 +173,7 @@ public class Controller implements ActionListener, KeyListener {
             this.viewManager.setValuesToCurrentProcess();
             this.viewManager.changeToReportsMenu();
         }
+        this.viewManager.changeToReportsMenu();
 
     }
 
