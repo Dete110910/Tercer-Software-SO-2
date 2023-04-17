@@ -202,6 +202,10 @@ public class ViewManager extends JFrame {
         this.setValuesToTable(this.endIOSuspendBlockToSuspendReady, "Procesos Term. Susp.Bloq-Sus.List");
     }
 
+    public void setValuesToSuspendReady(){
+        this.setValuesToTable(this.suspendReady, "Suspendido Listo");
+    }
+
     public void setValuesToResumeSuspReadyReport(){
         this.setValuesToTable(this.resumeSuspendReadyToReady, "Procesos Reanudados");
     }

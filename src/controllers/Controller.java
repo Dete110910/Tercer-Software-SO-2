@@ -85,6 +85,9 @@ public class Controller implements ActionListener, KeyListener {
             case "ReporteTermSusBloqASusList":
                 this.setValuesToEndBlockReadyReport();
                 break;
+            case "SuspendidoListo":
+                this.setValuesToSuspReadyReport();
+                break;
             case "ReporteReanSusLisAList":
                 this.setValuesToResumeSuspReadyReport();
                 break;
@@ -291,6 +294,10 @@ public class Controller implements ActionListener, KeyListener {
         this.viewManager.setValuesToEndSuspReadyReport();
     }
 
+    public void setValuesToSuspReadyReport(){
+        this.viewManager.setValuesToSuspendReady();
+    }
+
     public void setValuesToResumeSuspReadyReport(){
         this.viewManager.setValuesToResumeSuspReadyReport();
     }
@@ -338,6 +345,7 @@ public class Controller implements ActionListener, KeyListener {
         viewManager.setResumeSuspendReadyToReady(processManager.getListAsMatrixObject(processManager.getResumeSuspendReadyToReady()));
         viewManager.setSuspendReadyToSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendReadyToSuspendReady()));
         viewManager.setSuspendExecutionToSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendExecutionToSuspendReady()));
+        viewManager.setSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendReady()));
         viewManager.setFinished(processManager.getListAsMatrixObject(processManager.getFinished()));
     }
 

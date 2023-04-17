@@ -18,9 +18,9 @@ public class PanelMenuReport extends JPanel {
     public PanelMenuReport(ActionListener listener){
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.decode("#4a4e69"));
-        this.setPreferredSize(new Dimension(350,80));
-        this.setMaximumSize(new Dimension(350,80));
-        this.setMinimumSize(new Dimension(350,80));
+        this.setPreferredSize(new Dimension(380,80));
+        this.setMaximumSize(new Dimension(380,80));
+        this.setMinimumSize(new Dimension(380,80));
         initComponents(listener);
         this.setVisible(true);
     }
@@ -91,30 +91,35 @@ public class PanelMenuReport extends JPanel {
         this.endIOSuspendBlockToSuspendReady.setActionCommand("ReporteTermSusBloqASusList");
         this.addComponent(this.endIOSuspendBlockToSuspendReady, 0, 13);
 
+        this.suspendReady = new Button("Susp-List");
+        this.suspendReady.addActionListener(actionListener);
+        this.suspendReady.setActionCommand("SuspendidoListo");
+        this.addComponent(this.suspendReady, 0,14);
+
         this.resumeSuspendReadyToReady = new Button("Rean. Susp-List");
         this.resumeSuspendReadyToReady.addActionListener(actionListener);
         this.resumeSuspendReadyToReady.setActionCommand("ReporteReanSusLisAList");
-        this.addComponent(this.resumeSuspendReadyToReady, 0, 14);
+        this.addComponent(this.resumeSuspendReadyToReady, 0, 15);
 
         this.suspendReadyToSuspendReady = new Button("Susp. List-Susp.List");
         this.suspendReadyToSuspendReady.addActionListener(actionListener);
         this.suspendReadyToSuspendReady.setActionCommand("ReporteSuspListASuspList");
-        this.addComponent(this.suspendReadyToSuspendReady, 0, 15);
+        this.addComponent(this.suspendReadyToSuspendReady, 0, 16);
 
         this.suspendExecutionToSuspendReady = new Button("Susp. Eje-Susp.List");
         this.suspendExecutionToSuspendReady.addActionListener(actionListener);
         this.suspendExecutionToSuspendReady.setActionCommand("ReporteSuspEjeASuspList");
-        this.addComponent(this.suspendExecutionToSuspendReady, 0, 16);
+        this.addComponent(this.suspendExecutionToSuspendReady, 0, 17);
 
         finishedReport = new Button("Finalizados");
         finishedReport.addActionListener(actionListener);
         finishedReport.setActionCommand("ReporteFinalizados");
-        addComponent(finishedReport, 0, 17);
+        addComponent(finishedReport, 0, 18);
 
         back = new Button("Atrás");
         back.addActionListener(actionListener);
         back.setActionCommand("Atras");
-        addComponent(back, 0, 18);
+        addComponent(back, 0, 19);
 
     }
 
