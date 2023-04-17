@@ -137,13 +137,18 @@ public class ViewManager extends JFrame {
     private Object[][] parseValuesIsBlockAndIsSuspended(Object[][] queueList){
         int size = queueList.length;
         for(int i = 0; i < size; i++){
-            queueList[i][2] = queueList[i][2].equals(true) ? "Sí" : "No";
-            queueList[i][3] = queueList[i][3].equals(true) ? "Sí" : "No";
-            queueList[i][4] = queueList[i][4].equals(true) ? "Sí" : "No";
+            if(!queueList[i][2].equals("Sí") && !queueList[i][2].equals("No")){
+                queueList[i][2] = queueList[i][2].equals(true) ? "Sí" : "No";
+                queueList[i][3] = queueList[i][3].equals(true) ? "Sí" : "No";
+                queueList[i][4] = queueList[i][4].equals(true) ? "Sí" : "No";
+            }
+
 
         }
         return queueList;
     }
+
+
 
     public void setValuesToCurrentProcess(){
         this.setValuesToTable(this.inQueue, "Procesos Existentes");
