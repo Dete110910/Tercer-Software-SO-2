@@ -118,7 +118,13 @@ public class ProcessManager {
     }
 
     private BigInteger consumeTimeProcess(Process process) {
-        return (process.getTime().subtract(BigInteger.valueOf(PROCESS_TIME)));
+        BigInteger value = BigInteger.valueOf(0);
+        if(process.getTime().compareTo(BigInteger.valueOf(PROCESS_TIME))==1){
+            value = (process.getTime().subtract(BigInteger.valueOf(PROCESS_TIME)));
+        }else {
+            value = BigInteger.valueOf(0);
+        }
+        return value;
     }
 
     private void loadToReadyQueue(Process process) {
