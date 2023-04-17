@@ -39,8 +39,12 @@ public class ProcessManager {
             boolean canContinue = true;
             while (canContinue) {
                 this.loadToDispatchQueue(new Process(ready.get(i)));
-                this.loadToExecQueue(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
-                if(!(ready.get(i).getTime().compareTo(new BigInteger("0"))==0)){
+                if(ready.get(i).getTime().compareTo(BigInteger.valueOf(PROCESS_TIME)) == 1){
+                    this.loadToExecQueue(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
+                }else{
+                    this.loadToExecQueue(new Process(ready.get(i)));
+                }
+                if(!(ready.get(i).getTime().compareTo(BigInteger.valueOf(0)) == 0)){
                     //bloqueado
                     if(ready.get(i).getTime().compareTo(BigInteger.valueOf(PROCESS_TIME)) == 1 && ready.get(i).isBlock() && !ready.get(i).isResume() && !ready.get(i).isSuspend()){
                         this.loadBlockProcess(i);
@@ -118,15 +122,8 @@ public class ProcessManager {
     }
 
     private BigInteger consumeTimeProcess(Process process) {
-        BigInteger value = BigInteger.valueOf(0);
-        if(process.getTime().compareTo(BigInteger.valueOf(PROCESS_TIME))==1){
-            value = (process.getTime().subtract(BigInteger.valueOf(PROCESS_TIME)));
-        }else {
-            value = BigInteger.valueOf(0);
-        }
-        return value;
+        return (process.getTime().subtract(BigInteger.valueOf(PROCESS_TIME)));
     }
-
     private void loadToReadyQueue(Process process) {
         this.ready.add(process);
         for (int i = 0; i < ready.size(); i++) {
