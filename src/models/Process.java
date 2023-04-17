@@ -67,4 +67,15 @@ public class Process {
     public void setResume(boolean resume) {
         isResume = resume;
     }
+
+    @Override
+    public String toString() {
+        return "Process{" +
+                "name='" + name + '\'' +
+                ", time=" + time +
+                ", isBlock=" + isBlock +
+                ", isSuspend=" + isSuspend +
+                ", isResume=" + isResume +
+                '}';
+    }
 }
