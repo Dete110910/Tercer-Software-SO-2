@@ -321,7 +321,7 @@ public class Controller implements ActionListener, KeyListener {
 
     private void openManual(){
         try{
-            java.lang.Process p = Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL "+"C:\\Users\\Usuario\\Desktop\\SO\\Software\\Renovar - ICETEX 2023-1.pdf");
+            java.lang.Process p = Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL "+"\"C:\\Users\\julie\\OneDrive\\Escritorio\\2023 I\\SISTEMAS OPERATVOS\\SO-Tercer-Software\\Tercer-Software-SO-2\\Manual de usuario.pdf\"");
         } catch (Exception e){
             System.out.println("El archivo no se puede abrir");
         }

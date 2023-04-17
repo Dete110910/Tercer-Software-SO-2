@@ -127,112 +127,64 @@ public class ProcessManager {
     }
     private void loadToReadyQueue(Process process) {
         this.ready.add(process);
-        for (int i = 0; i < ready.size(); i++) {
-            System.out.println(ready.get(i).getName() + "  " + ready.get(i).getTime() + "Listos");
-        }
     }
     private void loadToDispatchQueue(Process process) {
         this.dispatch.add(process);
-        for (int i = 0; i < dispatch.size(); i++) {
-            System.out.println(dispatch.get(i).getName() + "  " + dispatch.get(i).getTime() + "Despachados");
-        }
     }
     private void loadToExecQueue(Process process) {
         this.execution.add(process);
-        for (int i = 0; i < execution.size(); i++) {
-            System.out.println(execution.get(i).getName() + "  " + execution.get(i).getTime() + "Ejecución");
-        }
     }
 
     private void loadToExpQueue(Process process) {
         this.expiration.add(process);
-        for (int i = 0; i < expiration.size(); i++) {
-            System.out.println(expiration.get(i).getName() + "  " + expiration.get(i).getTime() + "Expiración");
-        }
     }
 
     private void loadToWaitEvent(Process process) {
         this.wait.add(process);
-        for (int i = 0; i < wait.size(); i++) {
-            System.out.println(wait.get(i).getName() + "  " + wait.get(i).getTime() + "Espera");
-        }
     }
 
     private void loadToBlock(Process process) {
         this.block.add(process);
-        for (int i = 0; i < block.size(); i++) {
-            System.out.println(block.get(i).getName() + "  " + block.get(i).getTime() + "Bloqueados");
-        }
     }
 
     private void loadToTerminateEventBlockList(Process process) {
         this.endIOBlockReady.add(process);
-        for (int i = 0; i < endIOBlockReady.size(); i++) {
-            System.out.println(endIOBlockReady.get(i).getName() + "  " + endIOBlockReady.get(i).getTime() + "Terminación bloqueado");
-        }
     }
 
     private void loadToSuspenQueueBlockSuspend(Process process) {
         this.suspendBlockToSuspendBlock.add(process);
-        for (int i = 0; i < suspendBlockToSuspendBlock.size(); i++) {
-            System.out.println(suspendBlockToSuspendBlock.get(i).getName() + "  " + suspendBlockToSuspendBlock.get(i).getTime() + "suspender suspendido bloqueado");
-        }
     }
 
     private void loadToResumeQueueBlockSusp(Process process) {
         this.resumeSuspendBlockToBlock.add(process);
-        for (int i = 0; i < resumeSuspendBlockToBlock.size(); i++) {
-            System.out.println(resumeSuspendBlockToBlock.get(i).getName() + "  " + resumeSuspendBlockToBlock.get(i).getTime() + " reanudar suspendido bloqueado");
-        }
     }
 
     private void loadToBlockSusp(Process process) {
         this.suspendBlock.add(process);
-        for (int i = 0; i < suspendBlock.size(); i++) {
-            System.out.println(suspendBlock.get(i).getName() + "  " + suspendBlock.get(i).getTime() + "suspendido bloqueado");
-        }
     }
 
     private void loadToTerminateEventBlockListBlockSuspend(Process process) {
         this.endIOSuspendBlockToSuspendReady.add(process);
-        for (int i = 0; i < endIOSuspendBlockToSuspendReady.size(); i++) {
-            System.out.println(endIOSuspendBlockToSuspendReady.get(i).getName() + "  " + endIOSuspendBlockToSuspendReady.get(i).getTime() + "Termiinación suspendido bloqueado susp listo");
-        }
     }
 
     private void loadToReadySusp(Process process) {
         this.suspendReady.add(process);
-        for (int i = 0; i < suspendReady.size(); i++) {
-            System.out.println(suspendReady.get(i).getName() + "  " + suspendReady.get(i).getTime() + "susp listo");
-        }
     }
 
     private void loaToResumeQueueReadySusp(Process process) {
         this.resumeSuspendReadyToReady.add(process);
-        for (int i = 0; i < resumeSuspendReadyToReady.size(); i++) {
-            System.out.println(resumeSuspendReadyToReady.get(i).getName() + "  " + resumeSuspendReadyToReady.get(i).getTime() + "reanudar susp listo");
-        }
     }
 
     private void loadToSuspendQueueReadySuspReady(Process process) {
         this.suspendReadyToSuspendReady.add(process);
-        for (int i = 0; i < suspendReadyToSuspendReady.size(); i++) {
-            System.out.println(suspendReadyToSuspendReady.get(i).getName() + "  " + suspendReadyToSuspendReady.get(i).getTime() + "Suspender susp listo");
-        }
     }
 
     private void loadToSuspendQueueExecSuspReady(Process process) {
         this.suspendExecutionToSuspendReady.add(process);
-        for (int i = 0; i < suspendExecutionToSuspendReady.size(); i++) {
-            System.out.println(suspendExecutionToSuspendReady.get(i).getName() + "  " + suspendExecutionToSuspendReady.get(i).getTime() + "Suspender ejecución susp listo");
-        }
     }
 
     private void loadToFinishedQueue(Process process) {
         this.finished.add(process);
-        for (int i = 0; i < finished.size(); i++) {
-            System.out.println(finished.get(i).getName() + "  " + finished.get(i).getTime() + "Finalizar");
-        }
     }
 
     private void cleanAllLists(){
