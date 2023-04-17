@@ -49,8 +49,56 @@ public class Controller implements ActionListener, KeyListener {
             case "Reportes":
                 this.changeToReportsMenu();
                 break;
+            case "ReporteActuales":
+                this.changeTableToCurrentReports(); //pendiente
+                break;
             case "ReporteListos":
                 this.changeTableToReadyReports();
+                break;
+            case "ReporteDespachados":
+                this.changeTableToDispatchReports();
+                break;
+            case "ReporteEjecucion":
+                this.setValuesToExecReport();
+                break;
+            case "ReporteExpirados":
+                this.setValuesToExepReport();
+                break;
+            case "ReporteEspera":
+                this.setValuesToWaitReport();
+                break;
+            case "ReporteBloqueados":
+                this.setValuesToBlockReport();
+                break;
+            case "ReporteTerminacionBloqueadoAListo":
+                this.setValuesToEndSuspReport();
+                break;
+            case "ReporteSuspendidoBloqASusp":
+                this.setValuesToSupBlockSuspReport();
+                break;
+            case "ReporteReanudarSuspABloq":
+                this.setValuesToResumeBlockSuspReport();
+                break;
+            case "ReporteSuspBloq":
+                this.setValuesToBlockSuspReport();
+                break;
+            case "ReporteTermSusBloqASusList":
+                this.setValuesToEndBlockReadyReport();
+                break;
+            case "ReporteReanSusLisAList":
+                this.setValuesToResumeSuspReadyReport();
+                break;
+            case "ReporteSuspListASuspList":
+                this.setValuesToSuspListSuspReport();
+                break;
+            case "ReporteSuspEjeASuspList":
+                this.setValuesToSuspExecSuspReport();
+                break;
+            case "ReporteFinalizados":
+                this.setValuesToFinishReport();
+                break;
+            case "Enviar":
+                this.initSimulation();
                 break;
             case "Atras":
                 this.changeToMainMenu();
@@ -65,6 +113,25 @@ public class Controller implements ActionListener, KeyListener {
         }
     }
 
+    private void initSimulation(){
+        int response = Utilities.showConfirmationWarning();
+        if(response == 0){
+            processManager.initSimulation();
+            Utilities.showDoneCPUProcess();
+            //this.saveReports();
+            processManager.copyToCurrentProcess();
+            processManager.cleanQueueList();
+            this.cleanMainTableProcess();
+            this.loadReportList();
+        }
+    }
+
+    private void cleanMainTableProcess(){
+        this.viewManager.setValuesToTable(processManager.getListAsMatrixObject(processManager.getInQueue()), "Procesos Actuales");
+    }
+    private void saveReports(){
+
+    }
 
     private void showCreateProcessDialog(){
         this.viewManager.showCreateProcessDialog();
@@ -176,9 +243,70 @@ public class Controller implements ActionListener, KeyListener {
 
     }
 
+    private void changeTableToCurrentReports(){
+        this.viewManager.setValuesToCurrentProcess();
+    }
+
     private void changeTableToReadyReports(){
         this.viewManager.setValuesToReadyReport();
     }
+
+    private void changeTableToDispatchReports(){
+        this.viewManager.setValuesToDispatchReport();
+    }
+
+    public void setValuesToExecReport(){
+        this.viewManager.setValuesToExecReport();
+    }
+
+    public void setValuesToExepReport(){
+        this.viewManager.setValuesToExepReport();
+    }
+
+    public void setValuesToWaitReport(){
+        this.viewManager.setValuesToWaitReport();
+    }
+
+    public void setValuesToBlockReport(){
+        this.viewManager.setValuesToBlockReport();
+    }
+
+    public void setValuesToEndSuspReport(){
+        this.viewManager.setValuesToEndBlockReport();
+    }
+
+    public void setValuesToSupBlockSuspReport(){
+       this.viewManager.setValuesToSupBlockSuspReport();
+    }
+
+    public void setValuesToResumeBlockSuspReport(){
+        this.viewManager.setValuesToResumeBlockSuspReport();
+    }
+
+    public void setValuesToBlockSuspReport(){
+        this.viewManager.setValuesToBlockSuspReport();
+    }
+
+    public void setValuesToEndBlockReadyReport(){
+        this.viewManager.setValuesToEndSuspReadyReport();
+    }
+
+    public void setValuesToResumeSuspReadyReport(){
+        this.viewManager.setValuesToResumeSuspReadyReport();
+    }
+
+    public void setValuesToSuspListSuspReport(){
+        this.viewManager.setValuesToSuspListSuspReport();
+    }
+
+    public void setValuesToSuspExecSuspReport(){
+        this.viewManager.setValuesToSuspExecSuspReport();
+    }
+
+    public void setValuesToFinishReport(){
+        this.viewManager.setValuesToFinishReport();
+    }
+
 
     private void changeToMainMenu(){
         this.viewManager.changeToMainMenu();
@@ -192,6 +320,25 @@ public class Controller implements ActionListener, KeyListener {
             System.out.println("El archivo no se puede abrir");
         }
 
+    }
+
+    private void loadReportList(){
+        viewManager.setInQueue(processManager.getListAsMatrixObject(processManager.getInQueue()));
+        viewManager.setReadyProcess(processManager.getListAsMatrixObject(processManager.getReady()));
+        viewManager.setDispatch(processManager.getListAsMatrixObject(processManager.getDispatch()));
+        viewManager.setExecution(processManager.getListAsMatrixObject(processManager.getExecution()));
+        viewManager.setExpiration(processManager.getListAsMatrixObject(processManager.getExpiration()));
+        viewManager.setWait(processManager.getListAsMatrixObject(processManager.getWait()));
+        viewManager.setBlock(processManager.getListAsMatrixObject(processManager.getBlock()));
+        viewManager.setEndIOBlockReady(processManager.getListAsMatrixObject(processManager.getEndIOBlockReady()));
+        viewManager.setSuspendBlockToSuspendBlock(processManager.getListAsMatrixObject(processManager.getSuspendBlockToSuspendBlock()));
+        viewManager.setResumeSuspendBlockToBlock(processManager.getListAsMatrixObject(processManager.getResumeSuspendBlockToBlock()));
+        viewManager.setSuspendBlock(processManager.getListAsMatrixObject(processManager.getSuspendBlock()));
+        viewManager.setEndIOSuspendBlockToSuspendReady(processManager.getListAsMatrixObject(processManager.getEndIOSuspendBlockToSuspendReady()));
+        viewManager.setResumeSuspendReadyToReady(processManager.getListAsMatrixObject(processManager.getResumeSuspendReadyToReady()));
+        viewManager.setSuspendReadyToSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendReadyToSuspendReady()));
+        viewManager.setSuspendExecutionToSuspendReady(processManager.getListAsMatrixObject(processManager.getSuspendExecutionToSuspendReady()));
+        viewManager.setFinished(processManager.getListAsMatrixObject(processManager.getFinished()));
     }
 
     @Override

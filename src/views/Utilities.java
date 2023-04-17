@@ -13,4 +13,8 @@ public class Utilities {
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] {"Sí","No"}, "Sí");
         return response;
     }
+
+    public static void showDoneCPUProcess(){
+        JOptionPane.showMessageDialog(null, "Los procesos han sido ejecutados con éxito", "Acción realizada", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

@@ -16,7 +16,7 @@ public class ViewManager extends JFrame {
 
     private Object[][] inQueue, readyProcess, dispatch, expiration, execution, wait, block, endIOBlockReady,
     suspendBlockToSuspendBlock, resumeSuspendBlockToBlock, suspendBlock, endIOSuspendBlockToSuspendReady,
-    suspendReady, resumeSuspendReadyToReady, suspendReadyToSuspendReady, suspendExecutionToSuspendReady, finished;
+    suspendReady, resumeSuspendReadyToReady, suspendReadyToSuspendReady, suspendExecutionToSuspendReady, finished, currentProcess;
 
     public ViewManager(ActionListener actionListener, KeyListener keyListener){
         this.setLayout(new BorderLayout());
@@ -146,12 +146,72 @@ public class ViewManager extends JFrame {
     }
 
     public void setValuesToCurrentProcess(){
-        this.setValuesToTable(this.inQueue, "Procesos actuales");
+        this.setValuesToTable(this.inQueue, "Procesos Existentes");
     }
+
+    public void setValuesToCurrentReport(){
+        this.setValuesToTable(this.inQueue, "Procesos Actuales");
+    }
+
     public void setValuesToReadyReport(){
         this.setValuesToTable(this.readyProcess, "Procesos Listos");
     }
 
+    public void setValuesToDispatchReport(){
+        this.setValuesToTable(this.dispatch, "Procesos Despachados");
+    }
+
+    public void setValuesToExecReport(){
+        this.setValuesToTable(this.execution, "Procesos en Ejecución");
+    }
+
+    public void setValuesToExepReport(){
+        this.setValuesToTable(this.expiration, "Procesos Expirados");
+    }
+
+    public void setValuesToWaitReport(){
+        this.setValuesToTable(this.wait, "Procesos en Espera");
+    }
+
+    public void setValuesToBlockReport(){
+        this.setValuesToTable(this.block, "Procesos Bloqueados");
+    }
+
+    public void setValuesToEndBlockReport(){
+        this.setValuesToTable(this.endIOBlockReady, "Procesos Terminados");
+    }
+
+    public void setValuesToSupBlockSuspReport(){
+        this.setValuesToTable(this.suspendBlockToSuspendBlock, "Procesos Suspendidos");
+    }
+
+    public void setValuesToResumeBlockSuspReport(){
+        this.setValuesToTable(this.resumeSuspendBlockToBlock, "Procesos reanudados");
+    }
+
+    public void setValuesToBlockSuspReport(){
+        this.setValuesToTable(this.suspendBlock, "Procesos Bloqueado-Suspendido");
+    }
+
+    public void setValuesToEndSuspReadyReport(){
+        this.setValuesToTable(this.endIOSuspendBlockToSuspendReady, "Procesos Term. Susp.Bloq-Sus.List");
+    }
+
+    public void setValuesToResumeSuspReadyReport(){
+        this.setValuesToTable(this.resumeSuspendReadyToReady, "Procesos Reanudados");
+    }
+
+    public void setValuesToSuspListSuspReport(){
+        this.setValuesToTable(this.suspendReadyToSuspendReady, "Procesos Suspendidos-Listos");
+    }
+
+    public void setValuesToSuspExecSuspReport(){
+        this.setValuesToTable(this.suspendExecutionToSuspendReady, "Procesos Suspendidos-Ejecución");
+    }
+
+    public void setValuesToFinishReport(){
+        this.setValuesToTable(this.finished, "Procesos FInalizados");
+    }
 
     public void setInQueue(Object[][] inQueue) {
         this.inQueue = inQueue;
