@@ -98,7 +98,6 @@ public class ProcessManager {
         this.loadToSuspenQueueBlockSuspend(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loadToBlockSusp(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loadToResumeQueueBlockSusp(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
-        this.loadToBlock(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loadToTerminateEventBlockList(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loadToReadyQueue(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
     }
@@ -116,6 +115,7 @@ public class ProcessManager {
 
     private void loadSuspendResumeProcess(int i){
         this.loadToSuspendQueueReadySuspReady(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
+        this.loadToSuspendQueueExecSuspReady(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loadToReadySusp(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loaToResumeQueueReadySusp(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
         this.loadToReadyQueue(new Process(ready.get(i).getName(), this.consumeTimeProcess(ready.get(i)), ready.get(i).isBlock(), ready.get(i).isSuspend(), ready.get(i).isResume()));
